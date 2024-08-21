@@ -57,3 +57,34 @@ int main(){
     cout << "max element is:" << max << nl;
     
 }
+
+
+
+      ques--3
+#include<bits/stdc++.h>
+#define nl '\n'
+using namespace std;
+
+int main(){
+    int n;
+    cin >> n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin >> arr[i];
+    }
+    int fixed=-1;
+    for(int i=1;i<n;i++){
+        if(arr[i]==i){
+            fixed=i;
+            break;
+        }
+    }
+     
+    if(fixed!=-1){
+        cout << "fixed point in the array is:" << fixed << nl;
+    }
+    else{
+        cout << " fixed point not found" << nl;
+    }
+    
+}
