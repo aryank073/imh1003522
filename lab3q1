@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+#define nl '\n'
+using namespace std;
+
+int main(){
+    int n;
+    cin >> n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin >> arr[i];
+    }
+    int minIndex = INT_MAX;
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = i + 1; j < n; ++j) {
+            if (arr[i] == arr[j]) {
+                minIndex =min(minIndex, i);
+                break;
+            }
+        }
+    }
+    if(minIndex==INT_MAX){
+        cout << "no repeating elements" << nl;
+    }
+    else{
+        cout << "repeating index is:" << minIndex << nl;
+    }
+}
