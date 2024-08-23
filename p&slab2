@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n = 5;
+    double x[] = {5, 10, 15, 20, 25};
+    double y[] = {16, 19, 23, 26, 30};
+
+    double sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0;
+
+    for (int i = 0; i < n; i++) {
+        sum_x += x[i];
+        sum_y += y[i];
+        sum_xy += x[i] * y[i];
+        sum_x2 += x[i] * x[i];
+    }
+    
+    double m = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x * sum_x);
+    double c = (sum_y - m * sum_x) / n;
+
+    cout << "The equation of the line is: y = " << m << "x + " << c << endl;
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+int main(){
+    int n=5;
+    double x[n];
+    double y[n];
+    for(int i=0;i<n;i++){
+        cin >> x[i];
+        cin >> y[i];
+    }
+      double sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0;
+      
+     for(int i=0;i<n;i++){
+         sum_x+=x[i];
+         sum_y+=y[i];
+         sum_x2+=x[i]*x[i];
+         sum_xy+=x[i]*y[i];
+     }
+     
+    double m = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x * sum_x);
+    double c = (sum_y - m * sum_x) / n;
+     
+     cout << "The equation of the line is: y = " << m << "x + " << c << endl;
+     
+     double x_value;
+     cin >> x_value;
+     cout << "The value at x=2.5 is:" << m*x_value+c << endl;
+     
+}
