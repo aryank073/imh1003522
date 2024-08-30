@@ -1,0 +1,76 @@
+      que--1
+
+#include <iostream>
+#include <cmath>
+#include <vector>
+
+int main() {
+    // Given data
+    std::vector<int> times = {38, 40, 47, 44, 46, 43, 49, 53};
+    int n = times.size();
+    
+    // Calculate the mean
+    double sum = 0;
+    for(int i = 0; i < n; i++) {
+        sum += times[i];
+    }
+    double mean = sum / n;
+
+    // Calculate the variance
+    double sum_squared_diff = 0;
+    for(int i = 0; i < n; i++) {
+        sum_squared_diff += pow(times[i] - mean, 2);
+    }
+    double variance = sum_squared_diff / n;
+
+    // Calculate the coefficient of variation (CV)
+    double standard_deviation = sqrt(variance);
+    double coefficient_of_variation = (standard_deviation / mean) * 100;
+
+    // Output results
+    std::cout << "Mean: " << mean << std::endl;
+    std::cout << "Variance: " << variance << std::endl;
+    std::cout << "Coefficient of Variation: " << coefficient_of_variation << "%" << std::endl;
+
+    return 0;
+}
+
+
+
+
+                        que--2
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Marks and standard deviation for student A
+    double totalMarksA = 460;
+    double stdDevA = 4.6;
+
+    // Marks and standard deviation for student B
+    double totalMarksB = 480;
+    double stdDevB = 2.4;
+
+    // Calculate mean marks for both students
+    double meanA = totalMarksA / 5;
+    double meanB = totalMarksB / 5;
+
+    // Calculate coefficient of variation (CV) for both students
+    double CV_A = (stdDevA / meanA) * 100;
+    double CV_B = (stdDevB / meanB) * 100;
+
+    // Output the CVs
+    cout << "Coefficient of Variation for Student A: " << CV_A << "%" << endl;
+    cout << "Coefficient of Variation for Student B: " << CV_B << "%" << endl;
+
+    // Determine who is more consistent
+    if (CV_A < CV_B) {
+        cout << "Student A is more consistent in performance." << endl;
+    } else if (CV_A > CV_B) {
+        cout << "Student B is more consistent in performance." << endl;
+    } else {
+        cout << "Both students are equally consistent in performance." << endl;
+    }
+
+    return 0;
+}
