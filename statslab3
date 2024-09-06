@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n = 3;
+    int totalTosses = 100;
+    vector<int> observedFrequencies = {36, 40, 22, 2};
+    double totalHeads = 0;
+    int totalObservations = 0;
+
+    for (int i = 0; i < observedFrequencies.size(); ++i) {
+        totalHeads += i * observedFrequencies[i];
+        totalObservations += observedFrequencies[i];
+    }
+    float p = totalHeads / (totalTosses * n);
+    float q = 1 - p;
+
+    cout << "Estimated probability p: " << p << endl;
+
+    double expectedFrequencies[4] = {0.0};
+
+    for (int k = 0; k <= n; ++k) {
+        int c = 1;
+        for (int i = 0; i < k; ++i) {
+            c = c * (n - i) / (i + 1);
+        }
+
+        double probability = c * pow(p, k) * pow(q, n - k);
+
+        expectedFrequencies[k] = probability * totalTosses;
+    }
+
+    cout << "Expected Frequencies:" << endl;
+    for (int k = 0; k <= n; ++k) {
+        cout << k << " heads: " << expectedFrequencies[k] << endl;
+    }
+
+    return 0;
+}
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    double lambda = 143.0 / 325.0; 
+    int total_pages = 325;        
+    int mistakes[] = {0, 1, 2, 3, 4}; 
+    double expected_frequencies[5]; 
+ 
+    for (int i = 0; i < 5; i++) {
+        double poisson_prob = (exp(-lambda) * pow(lambda, mistakes[i])) / tgamma(mistakes[i] + 1);
+        expected_frequencies[i] = poisson_prob * total_pages;
+    }
+ 
+    std::cout << "Expected frequencies:\n";
+    for (int i = 0; i < 5; i++) {
+        std::cout << "For " << mistakes[i] << " mistakes: " << expected_frequencies[i] << " pages\n";
+    }
+ 
+    return 0;
+}
