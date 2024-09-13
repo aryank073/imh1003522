@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+using namespace std;
+double calculate_correlation(vector<double>& x, vector<double>& y) {
+    double sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0, sum_y2 = 0;
+    int n = x.size();
+
+    for (int i = 0; i < n; ++i) {
+        sum_x += x[i];
+        sum_y += y[i];
+        sum_xy += x[i] * y[i];
+        sum_x2 += x[i] * x[i];
+        sum_y2 += y[i] * y[i];
+    }
+
+    double num = n * sum_xy - sum_x * sum_y;
+    double den = sqrt((n * sum_x2 - sum_x * sum_x) * (n * sum_y2 - sum_y * sum_y));
+
+    if (den == 0) {
+        return 0;
+    }
+
+    return num / den;
+}
+
+int main() {
+
+    vector<double> x = {3, 3, 4, 5, 6, 6, 7, 8, 8, 9};
+    vector<double> y = {9, 5, 12, 9, 14, 16, 22, 18, 24, 22};
+
+
+    double correlation = calculate_correlation(x, y);
+    cout << "Correlation Coefficient: " << correlation << endl;
+
+}
+     0.910155
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+double calculate_correlation(vector<double>& x, vector<double>& y) {
+    double sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0, sum_y2 = 0;
+    int n = x.size();
+
+    for (int i = 0; i < n; ++i) {
+        sum_x += x[i];
+        sum_y += y[i];
+        sum_xy += x[i] * y[i];
+        sum_x2 += x[i] * x[i];
+        sum_y2 += y[i] * y[i];
+    }
+
+    double num = n * sum_xy - sum_x * sum_y;
+    double den = sqrt((n * sum_x2 - sum_x * sum_x) * (n * sum_y2 - sum_y * sum_y));
+
+    if (den == 0) {
+        return 0;
+    }
+
+    return num / den;
+}
+
+int main() {
+
+    vector<double> x = {12.5,5.0,3.0,5.0,6.5,4.0,7.0,5.5,4.0};
+    vector<double> y = {10,26,41,29,27,19,18,20,28,33};
+
+
+    double correlation = calculate_correlation(x, y);
+    cout << "Correlation Coefficient: " << correlation << endl;
+
+}
+
+    -0.760498
