@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+double calculate_mean(vector<double>& data) {
+    return accumulate(data.begin(), data.end(), 0.0) / data.size();
+}
+ 
+double calculate_variance(vector<double>& data, double mean) {
+    double sum = 0.0;
+    for (double val : data) {
+        sum += pow(val - mean, 2);
+    }
+    return sum / (data.size() - 1); 
+}
+ 
+    pair<double, double> confidence_interval_variance(double variance, int n) {
+    double chi2_l = 8.907;  
+    double chi2_h = 32.852; 
+ 
+    double lower_bound = (n - 1) * variance / chi2_h;
+    double upper_bound = (n - 1) * variance / chi2_l;
+ 
+    return {lower_bound, upper_bound};
+}
+    pair<double, double> confidence_interval_standard_deviation(pair<double, double>& variance_interval) {
+    return {sqrt(variance_interval.first), sqrt(variance_interval.second)};
+}
+ 
+int main() {
+    vector<double> data_steel = {2.02, 1.94, 2.09, 1.95, 1.98, 2.00, 2.03, 2.04, 2.08, 2.07,
+                                      1.99, 1.96, 1.99, 1.95, 1.99, 1.99, 2.03, 2.05, 2.01, 2.03};
+ 
+    double alpha = 0.05; 
+    int n = data_steel.size();
+ 
+    double mean_steel = calculate_mean(data_steel);
+    double variance_steel = calculate_variance(data_steel, mean_steel);
+ 
+    auto variance_interval_steel = confidence_interval_variance(variance_steel, n);
+ 
+    auto stddev_interval_steel = confidence_interval_standard_deviation(variance_interval_steel);
+ 
+    cout << fixed <<setprecision(4);
+    cout << "Variance (Steel): " << variance_steel << endl;
+    cout << "95% Confidence Interval for Variance (Steel): [" << variance_interval_steel.first << ", " << variance_interval_steel.second << "]\n";
+    cout << "95% Confidence Interval for Standard Deviation (Steel): [" << stddev_interval_steel.first << ", " << stddev_interval_steel.second << "]\n";
+ 
+    return 0;
+}
